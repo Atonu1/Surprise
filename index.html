@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret 🤫</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet"> <!-- Added Chewy font -->
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fce4ec;
+            color: #333;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            border: 2px solid #d81b60;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        .message {
+            font-size: 20px;
+            margin: 20px;
+            opacity: 0;
+        }
+        .puzzle {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #d81b60;
+        }
+        #welcomeMessage {
+            margin-top: 50px;
+            font-size: 26px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+        }
+        #reasonsHeading {
+            margin-top: 30px;
+            font-size: 24px;
+            color: #d81b60;
+            opacity: 0;
+        }
+        #nextButton {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #d81b60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* White rectangle for next screen */
+        #whiteBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 600px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #whiteBox p {
+            font-size: 18px;
+            color: #333;
+        }
+        .handwritten-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    color: #d81b60;
+    text-align: center;
+}
+.final-next-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #d81b60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+ /* Added style for Happy Women's Day message */
+ #happyMessage {
+            font-family: 'Chewy', cursive; /* Use Chewy font */
+            font-size: 50px;
+            color: black;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome! Here's a little surprise for you 🎁</h1>
+        <p>Enter your name and secret code to begin:</p>
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="password" id="code" placeholder="Secret Code">
+        <button onclick="checkCode()">Enter</button>
+        
+        <div class="puzzle">
+            <p><strong>Can you find the hidden word?</strong></p>
+            <p>"Yo_u &nbsp; a_e &nbsp; _ &nbsp; m_rvelous &nbsp; _nd &nbsp; k_nd &nbsp; soul &nbsp; beyo_d &nbsp; ma_ic"</p>
+            <p>Hint: Fill in the missing letters to reveal the secret code! 🔍✨</p>
+        </div>
+    </div>
+
+    <div id="messageContainer" class="hidden">
+        <h2 id="welcomeMessage"></h2>
+        
+        <h3 id="reasonsHeading"> <span style="color: black ;">This one is for you :</span> 8 reasons why I admire you</h3>
+        <ul style="list-style-type: none; padding: 0;">
+            <li class="message">1. You are my constant—always there, no matter what. 🤗 </li>
+            <li class="message">2. You’ve helped me heal in ways I never thought possible. 💙</li>
+            <li class="message">3. You teach me, not just with words, but with the way you live. 📖✨</li>
+            <li class="message">4. You make me believe in myself, even when I struggle to. 🌟 </li>
+            <li class="message">5. You show me reality when I get lost in my daydreams. ☁️🔍 </li>
+            <li class="message">6. Your passion for what you love is truly inspiring. 🔥 </li>
+            <li class="message">7. You are the sweetest, most thoughtful person I’ve ever met. 🍯 </li>
+            <li class="message">8. Simply put, you are amazing—just the way you are. 💫 </li>
+        </ul>
+
+        <!-- Next button -->
+        <button id="nextButton" onclick="goToNextPage()">Next</button>
+    </div>
+
+    <!-- White box for the next page -->
+    <div id="whiteBox">
+        <p>For you ✨</p>
+        <p class="handwritten-text">The word "women" may seem simple, just like "men," but for me, it holds a deeper, more special meaning. "Women" can represent my sister, friends, loved ones—those closest to my heart. This word carries the weight of countless unspoken words and the pain of sacrifices made since the moment women are born. I’ve often wondered why it has to be this way, and though the world often feels full of despair, I’ve come to realize it’s a world that thinks only of itself.
+
+            It’s often said that "women" can't exist without "men," but to me, it’s the opposite. Without the word "women," we couldn’t even form the word "men." It all begins with you.
+            
+            I feel incredibly fortunate to have a woman like you by my side. You've been my strength, helping me heal from past traumas and teaching me how to cope with failures. You’ve shown me the way, and today, I just want to pause and wish you a Happy Women's Day. Without you, I know my life would be so much more chaotic.
+            
+            I’ve always respected you, and I will continue to do so. But please, be there for me as a friend—not just a psychologist! 😁 Because, truth be told, I need you more than you know.
+            
+            Remember, there are no limits. Don’t ever settle for less. Set your boundaries where you must, but don’t let them limit your dreams or goals. Aim high and go for it—you have all the strength and power you need. You are stronger than you think.</p>
+            <button id="finalNextBtn" class="final-next-btn">Next</button>
+        </div>
+
+    <script>
+        function typeWriterEffect(element, text, speed, callback) {
+            let i = 0;
+            // Clear the element before starting to type
+            element.innerHTML = ""; 
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Remove the cursor after typing is done
+                    element.style.borderRight = "none"; 
+                    if (callback) {
+                        callback();
+                    }
+                }
+            }
+            type();
+        }
+
+        function checkCode() {
+            let name = document.getElementById("name").value;
+            let code = document.getElementById("code").value;
+            if (code.toUpperCase() === "URAMAZING") { 
+                document.querySelector(".container").style.display = "none";
+                document.getElementById("messageContainer").classList.remove("hidden");
+                let welcomeMessage = document.getElementById("welcomeMessage");
+                let reasonsHeading = document.getElementById("reasonsHeading");
+                let messages = document.querySelectorAll(".message");
+
+                // Clear previous content to reset the message area
+                welcomeMessage.innerHTML = "";
+
+                // Start typing the welcome message
+                typeWriterEffect(welcomeMessage, "Dear " + name + ",", 100, function() {
+                    // Show the reasons heading
+                    gsap.to(reasonsHeading, { opacity: 1, duration: 1 });
+                    setTimeout(function() {
+                        gsap.to(messages, { opacity: 1, duration: 1, stagger: 1 });
+                    }, 1000);
+                });
+            } else {
+                alert("Wrong code! Try again.");
+            }
+        }
+
+        function goToNextPage() {
+            // Hide the previous content
+            document.getElementById("messageContainer").style.display = "none";
+
+            // Show the white box
+            let whiteBox = document.getElementById("whiteBox");
+            whiteBox.style.display = "block";
+        }
+        document.getElementById("finalNextBtn").addEventListener("click", function() {
+    document.getElementById("whiteBox").style.display = "none"; // Hide the white box
+    let happyWomensDayTitle = document.createElement("h2");
+    happyWomensDayTitle.textContent = "Wish you a Happy Women's Day ☺️";
+    happyWomensDayTitle.id = "happyMessage"; // Set the ID to apply the specific styles
+    document.body.appendChild(happyWomensDayTitle); // Add the title to the body
+});
+
+
+
+    </script>
+</body>
+</html>
